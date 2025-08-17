@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const myElement = <h1>My score is {10*8}</h1>;
+const myElement = <h1>My score is {10*10} <br></br> You win!!!</h1>;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(myElement)
