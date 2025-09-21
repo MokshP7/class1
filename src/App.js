@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [username, setUsername] = useState("");
+  const [age, setAge] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleLogin = () => {
+    if (username.trim() === "" || age === "") {
+      setMessage("Please enter both username and age.");
+      return;
+    }
+
+    const numericAge = Number(age);
+    if (numericAge >= 17) {
+      setMessage(`Welcome, ${username}! You are allowed.`);
+    } else {
+      setMessage(`Sorry, ${username}. You must be at least 17.`);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Login Form</h2>
+
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <br /><br />
+
+      <input
+        type="number"
+        placeholder="Age"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+      />
+      <br /><br />
+
+      <button onClick={handleLogin}>Login</button>
+
+      {message && <p>{message}</p>}
     </div>
   );
 }
